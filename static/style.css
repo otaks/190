@@ -1,0 +1,26 @@
+body{
+    margin: 10px;
+}
+
+h1 {
+    font-size: 15pt;
+    
+}
+
+.flame{
+    margin-top: 10px;
+    text-align: center;
+}
+.good{
+    font-weight: bold;
+    color: blue;
+}
+
+.bad{
+    font-weight: bold;
+    color: red;
+}
+
+fieldset{
+    margin :10px 0px;
+}

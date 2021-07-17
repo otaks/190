@@ -1,0 +1,35 @@
+ <!DOCTYPE html>
+ <html lang="ja">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>イカラーニング</title>
+     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+     <script data-ad-client="ca-pub-7234033854270698" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+ </head>
+ <body>
+    
+    <h1>{{weapon}}</h1>
+    <img src="/static/images/{{i}}.png">
+    
+    <form method="post" action="/">
+        <fieldset style="border: 1px solid #000000; padding: 10px;">
+            <legend>サブ</legend>
+            <input type="radio" name="trigger" value={{sub_one}} id="s1" checked="checked"><label for="s1">{{sub_one}}</label><br>
+            <input type="radio" name="trigger" value={{sub_two}} id="s2"><label for="s2">{{sub_two}}</label><br>
+            <input type="radio" name="trigger" value={{sub_three}} id="s3"><label for="s3">{{sub_three}}</label>
+        </fieldset>
+        <fieldset style="border: 1px solid #000000; padding: 10px;">
+            <legend>スペシャル</legend>
+            <input type="radio" name="trigger2" value={{sp_one}} id="sp1" checked="checked"><label for="sp1">{{sp_one}}</label><br>
+            <input type="radio" name="trigger2" value={{sp_two}} id="sp2"><label for="sp2">{{sp_two}}</label><br>
+            <input type="radio" name="trigger2" value={{sp_three}} id="sp3"><label for="sp3">{{sp_three}}</label>
+        </fieldset>
+        <input type="hidden" name="i" value={{i}}>
+        <div class="flame">
+        <input type="submit" name="答え合わせ！">
+        </div>
+    </form>
+    
+ </html>

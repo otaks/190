@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>結果</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">   
+    <script data-ad-client="ca-pub-7234033854270698" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<body>
+
+   <h1>{{weapon}}</h1>
+   <img src="/static/images/{{i}}.png">
+
+    <fieldset style="border: 1px solid #000000; padding: 10px;">
+        <legend>サブ</legend>
+        あなたの答え:{{your_ans_sub}}<br>
+        正解:{{correct_ans_sub}}<br>
+        {% if your_ans_sub == correct_ans_sub %}
+            <div class="good">当たり！</div>
+        {% else %}
+            <div class="bad">はずれ！</div>
+        {% endif %}
+    </fieldset>
+    <fieldset style="border: 1px solid #000000; padding: 10px;">
+        <legend>スペシャル</legend>
+        あなたの答え:{{your_ans_sp}}<br>
+        正解:{{correct_ans_sp}}<br>
+        {% if your_ans_sp == correct_ans_sp %}
+        <div class="good">当たり！</div>
+        {% else %}
+            <div class="bad">はずれ！</div>
+        {% endif %}
+
+    </fieldset>
+    <form action="/">
+        <div class="flame">
+        <button type="submit">次へ</button>
+        </div>
+    </form>
+    
+</body>
+</html>
