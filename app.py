@@ -181,7 +181,7 @@ def getLatest20(winlose):
     for i in range(len(winlose)):
         if winlose[i] == "1":
             ret = ret + 1
-    return ret/20*100
+    return ret/20.0*100
 
 def getRenzoku(winlose):
     ret = 0
