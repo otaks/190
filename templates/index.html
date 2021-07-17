@@ -4,13 +4,17 @@
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="description" content="イカラーニングでスプラトゥーン2のサブ・スペシャルを覚えよう" />
+     <meta name="keywords" content="スプラトゥーン2,クイズ,サブ,スペシャル,イカラーニング" />     
      <title>イカラーニング</title>
      <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
      <script data-ad-client="ca-pub-7234033854270698" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
  </head>
  <body>
     直近20回 正解率:{{latest20}}%<br>
-    連続正解数:{{renzoku}}
+    連続正解数:{{renzoku}}　　
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="イカラーニングでサブ・スペシャルを覚えよう！【直近20回 正解率:{{latest20}}%　連続正解数:{{renzoku}}】　" data-show-count="false">Tweet</a>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>  
     <hr>
     <h1>{{weapon}}</h1>
     <img src="/static/images/{{i}}.png">
