@@ -1,6 +1,6 @@
 #!python3
 # -*- coding: utf-8 -*- 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 import random
 
 app = Flask(__name__, static_url_path='/static')
@@ -156,6 +156,14 @@ def index():
     random.shuffle(tmp1)
     random.shuffle(tmp2)
 
+
+    winlose = request.cookies.get('winLose')
+    if winlose is None:
+        winlose = "00000000000000000000"
+    
+    latest20 = getLatest20(winlose)
+    renzoku = getRenzoku(winlose)
+
     return render_template('index.html',
         weapon=weapon_list[i][0],
         sub_one=sub_list[tmp1[0]],
@@ -164,7 +172,26 @@ def index():
         sp_one=sp_list[tmp2[0]],
         sp_two=sp_list[tmp2[1]],
         sp_three=sp_list[tmp2[2]],
-        i=i)
+        i=i,
+        latest20=latest20,
+        renzoku=renzoku)
+
+def getLatest20(winlose):
+    ret = 0
+    for i in range(len(winlose)):
+        if winlose[i] == "1":
+            ret = ret + 1
+    return ret/20*100
+
+def getRenzoku(winlose):
+    ret = 0
+    t = winlose[::-1]
+    for i in range(len(t)):
+        if t[i] == "1":
+            ret = ret + 1
+        else:
+            break
+    return ret
 
 @app.route('/', methods=['POST'])
 def form():
@@ -172,16 +199,33 @@ def form():
     t2 = request.form['trigger2']
     i =  int(request.form['i'])
 
-    return render_template('result.html',
+    winlose = request.cookies.get('winLose')
+    if winlose is None:
+        winlose = "00000000000000000000" 
+    winlose = winlose[1:]
+    if t1 == sub_list[weapon_list[i][1]] and t2 == sp_list[weapon_list[i][2]]:
+        winlose = winlose + "1"
+    else:
+        winlose = winlose + "0"        
+
+    latest20 = getLatest20(winlose)
+    renzoku = getRenzoku(winlose)
+
+    res = make_response(render_template('result.html',
         weapon=weapon_list[i][0],    
         your_ans_sub=t1,
         correct_ans_sub=sub_list[weapon_list[i][1]],
         your_ans_sp=t2,
         correct_ans_sp=sp_list[weapon_list[i][2]],
-        i=i)
+        i=i,
+        latest20=latest20,
+        renzoku=renzoku
+        ))
 
+    res.set_cookie('winLose', winlose)
+    return res
 
 if __name__ == '__main__':
-    #app.debug = True
+    app.debug = True
     #app.run(host='localhost')
     app.run(debug=False, host='0.0.0.0', port=80)
