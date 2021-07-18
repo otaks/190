@@ -11,9 +11,10 @@
      <script data-ad-client="ca-pub-7234033854270698" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
  </head>
  <body>
+    <a href="{{ url_for('setting') }}">設定レベル:</a>{{level}}<br>
     直近20回 正解率:{{latest20}}%<br>
     連続正解数:{{renzoku}}　　
-    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="イカラーニングでサブ・スペシャルを覚えよう！【直近20回 正解率:{{latest20}}%　連続正解数:{{renzoku}}】 #Splatoon2 #スプラトゥーン2 #NintendoSwitch #ikalearning" data-show-count="false">Tweet</a>
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="イカラーニングでサブ・スペシャルを覚えよう！【設定レベル:{{level}}  直近20回 正解率:{{latest20}}%　連続正解数:{{renzoku}}】 #Splatoon2 #スプラトゥーン2 #NintendoSwitch #ikalearning" data-show-count="false">Tweet</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>  
     <hr>
     <h1>{{weapon}}</h1>

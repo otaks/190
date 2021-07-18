@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="イカラーニングでスプラトゥーン2のサブ・スペシャルを覚えよう" />
+    <meta name="keywords" content="スプラトゥーン2,クイズ,サブ,スペシャル,イカラーニング" />
+    <title>イカラーニング</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">   
+    <script data-ad-client="ca-pub-7234033854270698" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+</head>
+<body>
+    <form action="/setting" method="POST">
+    {% if level == "level1" %}
+    <input type="radio" name="trigger" value="level1" id="s1" checked="checked"><label for="s1">Level1(10問から出題)</label><br>
+    <input type="radio" name="trigger" value="level2" id="s2"><label for="s2">Level2(30問から出題)</label><br>
+    <input type="radio" name="trigger" value="level3" id="s3"><label for="s3">Level3(全問から出題)</label>
+    {% elif level == "level2" %}
+    <input type="radio" name="trigger" value="level1" id="s1" ><label for="s1">Level1(10問から出題)</label><br>
+    <input type="radio" name="trigger" value="level2" id="s2" checked="checked"><label for="s2">Level2(30問から出題)</label><br>
+    <input type="radio" name="trigger" value="level3" id="s3"><label for="s3">Level3(全問から出題)</label>
+    {% else %}
+    <input type="radio" name="trigger" value="level1" id="s1" ><label for="s1">Level1(10問から出題)</label><br>
+    <input type="radio" name="trigger" value="level2" id="s2"><label for="s2">Level2(30問から出題)</label><br>
+    <input type="radio" name="trigger" value="level3" id="s3"><label for="s3" checked="checked">Level3(全問から出題)</label>
+    {% endif %}
+
+    
+        <div class="flame">
+        <button type="submit">OK</button>
+        </div>
+    </form>
+    
+</body>
+</html>

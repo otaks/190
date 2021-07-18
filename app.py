@@ -1,6 +1,6 @@
 #!python3
 # -*- coding: utf-8 -*- 
-from flask import Flask, render_template, request, make_response
+from flask import Flask, render_template, request, make_response, redirect
 import random
 
 app = Flask(__name__, static_url_path='/static')
@@ -126,7 +126,24 @@ weapon_list = [
 
 @app.route('/')
 def index():
-    i = random.randint(0, len(weapon_list) - 1)
+    level = request.cookies.get('level')
+    if level is None:
+        level = "level1"
+
+    if level == "level1":
+        i = random.randint(0, 9)
+    elif level == "level2":
+        i = random.randint(0, 29)
+    else:
+        i = random.randint(0, len(weapon_list) - 1)
+
+    if level == "level1":
+        level = "Level1(10問から出題)"
+    elif level == "level2":
+        level = "Level2(30問から出題)"
+    else:
+        level = "Level3(全問から出題)"
+        
 
     #サブ
     i_sub = weapon_list[i][1]
@@ -174,7 +191,8 @@ def index():
         sp_three=sp_list[tmp2[2]],
         i=i,
         latest20=latest20,
-        renzoku=renzoku)
+        renzoku=renzoku,
+        level=level)
 
 def getLatest20(winlose):
     ret = 0
@@ -192,6 +210,23 @@ def getRenzoku(winlose):
         else:
             break
     return ret
+
+
+@app.route('/setting', methods=['GET'])
+def set_():
+    level = request.cookies.get('level')
+    if level is None:
+        level = "level1"    
+    return render_template("setting.html",level=level)
+
+@app.route('/setting', methods=['POST'])
+def setting():
+    t1 = request.form['trigger']
+    res = make_response(redirect('/'))
+
+    res.set_cookie('level', t1)
+
+    return res 
 
 @app.route('/', methods=['POST'])
 def form():
@@ -211,6 +246,17 @@ def form():
     latest20 = getLatest20(winlose)
     renzoku = getRenzoku(winlose)
 
+    level = request.cookies.get('level')
+    if level is None:
+        level = "level1"
+
+    if level == "level1":
+        level = "Level1(10問から出題)"
+    elif level == "level2":
+        level = "Level2(30問から出題)"
+    else:
+        level = "Level3(全問から出題)"
+
     res = make_response(render_template('result.html',
         weapon=weapon_list[i][0],    
         your_ans_sub=t1,
@@ -219,7 +265,8 @@ def form():
         correct_ans_sp=sp_list[weapon_list[i][2]],
         i=i,
         latest20=latest20,
-        renzoku=renzoku
+        renzoku=renzoku,
+        level=level
         ))
 
     res.set_cookie('winLose', winlose)
