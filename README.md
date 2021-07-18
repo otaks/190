@@ -3,7 +3,6 @@
 
 http://ikalearning.com/
 
-[備考]
-構成は、
-・Flask - jinjaのみ
+[構成]  
+・Flask - jinjaのみ  
 ・DBは未使用
