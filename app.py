@@ -238,6 +238,7 @@ def setting():
     res = make_response(redirect('/'))
 
     res.set_cookie('level', t1)
+    res.set_cookie('winLose', "00000000000000000000")
 
     return res 
 
