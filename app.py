@@ -144,6 +144,14 @@ def index():
     else:
         level = "Level3(全問から出題)"
         
+    #武器
+    weapon1 = random.randint(0, len(weapon_list) - 1)
+    while(weapon1 == i):
+        weapon1 = random.randint(0, len(weapon_list) - 1)
+
+    weapon2 = random.randint(0, len(weapon_list) - 1)
+    while(weapon2 == i or weapon2 == weapon1):
+        weapon2 = random.randint(0, len(weapon_list) - 1)
 
     #サブ
     i_sub = weapon_list[i][1]
@@ -167,9 +175,11 @@ def index():
     while(sp2 == i_sp or sp2 == sp1):
         sp2 = random.randint(0, len(sp_list) - 1)
 
+    tmp0 = [i, weapon1, weapon2]
     tmp1 = [i_sub, sub1, sub2]
     tmp2 = [i_sp, sp1, sp2]
 
+    random.shuffle(tmp0)
     random.shuffle(tmp1)
     random.shuffle(tmp2)
 
@@ -183,6 +193,9 @@ def index():
 
     return render_template('index.html',
         weapon=weapon_list[i][0],
+        weapon_one=weapon_list[tmp0[0]][0],
+        weapon_two=weapon_list[tmp0[1]][0],
+        weapon_three=weapon_list[tmp0[2]][0],
         sub_one=sub_list[tmp1[0]],
         sub_two=sub_list[tmp1[1]],
         sub_three=sub_list[tmp1[2]],
@@ -230,6 +243,7 @@ def setting():
 
 @app.route('/', methods=['POST'])
 def form():
+    t0 = request.form['trigger0']
     t1 = request.form['trigger']
     t2 = request.form['trigger2']
     i =  int(request.form['i'])
@@ -238,7 +252,7 @@ def form():
     if winlose is None:
         winlose = "00000000000000000000" 
     winlose = winlose[1:]
-    if t1 == sub_list[weapon_list[i][1]] and t2 == sp_list[weapon_list[i][2]]:
+    if t0 == weapon_list[i][0] and t1 == sub_list[weapon_list[i][1]] and t2 == sp_list[weapon_list[i][2]]:
         winlose = winlose + "1"
     else:
         winlose = winlose + "0"        
@@ -258,7 +272,8 @@ def form():
         level = "Level3(全問から出題)"
 
     res = make_response(render_template('result.html',
-        weapon=weapon_list[i][0],    
+        weapon=weapon_list[i][0], 
+        your_ans_weapon=t0,   
         your_ans_sub=t1,
         correct_ans_sub=sub_list[weapon_list[i][1]],
         your_ans_sp=t2,

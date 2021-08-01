@@ -17,10 +17,16 @@
     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="イカラーニングでサブ・スペシャルを覚えよう！【設定レベル:{{level}}  直近20回 正解率:{{latest20}}%　連続正解数:{{renzoku}}】 #Splatoon2 #スプラトゥーン2 #NintendoSwitch #ikalearning" data-show-count="false">Tweet</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>  
     <hr>
-    <h1>{{weapon}}</h1>
+    <!--<h1>{{weapon}}</h1>-->
     <img src="/static/images/weapon/{{i}}.png">
     
     <form method="post" action="/">
+        <fieldset style="border: 1px solid #000000; padding: 10px;">
+            <legend>武器</legend>
+            <input type="radio" name="trigger0" value={{weapon_one}} id="w1" checked="checked"><label for="w1">{{weapon_one}}</label><br>
+            <input type="radio" name="trigger0" value={{weapon_two}} id="w2"><label for="w2">{{weapon_two}}</label><br>
+            <input type="radio" name="trigger0" value={{weapon_three}} id="w3"><label for="w3">{{weapon_three}}</label>
+        </fieldset>
         <fieldset style="border: 1px solid #000000; padding: 10px;">
             <legend>サブ</legend>
             <input type="radio" name="trigger" value={{sub_one}} id="s1" checked="checked"><label for="s1">{{sub_one}}</label><br>
