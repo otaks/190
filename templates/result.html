@@ -17,8 +17,12 @@
     <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="イカラーニングでサブ・スペシャルを覚えよう！【設定レベル:{{level}}  直近20回 正解率:{{latest20}}%　連続正解数:{{renzoku}}】 #Splatoon2 #スプラトゥーン2 #NintendoSwitch #ikalearning" data-show-count="false">Tweet</a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>    
     <hr>
-   <h1>{{weapon}}</h1>
-   <img src="/static/images/{{i}}.png">
+    <h1>{{weapon}}</h1>
+    <div style="display: flex;align-items: flex-start;">
+        <img src="/static/images/weapon/{{i}}.png">
+        <img src="/static/images/sub/{{sub_id}}.png" >
+        <img src="/static/images/special/{{sp_id}}.png">
+    </div>
 
     <fieldset style="border: 1px solid #000000; padding: 10px;">
         <legend>サブ</legend>

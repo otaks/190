@@ -266,7 +266,9 @@ def form():
         i=i,
         latest20=latest20,
         renzoku=renzoku,
-        level=level
+        level=level,
+        sub_id=weapon_list[i][1],
+        sp_id=weapon_list[i][2],
         ))
 
     res.set_cookie('winLose', winlose)
